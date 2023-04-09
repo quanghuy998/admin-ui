@@ -1,0 +1,27 @@
+@import '../../../../commons/styles.scss';
+
+.admin-layout-menu-container {
+    padding-top: 80px;
+    padding-bottom: 30px;
+}
+
+.admin-layout-menu {
+    background-color: #fde7d7;
+    height: 100vw;
+    box-shadow: 0 0.46875rem 2.1875rem rgba(4, 9, 20, 0.03), 0 0.9375rem 1.40625rem rgba(4, 9, 20, 0.03),
+        0 0.25rem 0.53125rem rgba(4, 9, 20, 0.05), 0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03);
+}
+
+.admin-layout-menu .admin-layout-menu-item__heading {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 16px;
+}
+
+.admin-layout-menu span {
+    font-size: 14px;
+}
+
+.admin-layout-menu a {
+    text-decoration: none;
+}

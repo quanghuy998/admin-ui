@@ -1,0 +1,123 @@
+@import '../../../commons/styles.scss';
+
+ul,
+li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span {
+    color: $secondary-color;
+    font-weight: 600;
+}
+h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    text-align: center;
+}
+h2 {
+    font-size: 3rem;
+    margin-bottom: 3.5rem;
+}
+h3 {
+    font-size: 2rem;
+}
+h4 {
+    font-size: 1.5rem;
+}
+p,
+span {
+    font-size: 1.2rem;
+}
+html {
+    font-size: 62.5%;
+}
+a {
+    text-decoration: none;
+    color: $primary-color;
+}
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+@media screen and (max-width: 769px) {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    span {
+        color: $primary-color;
+        font-weight: 600;
+    }
+    h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        text-align: center;
+    }
+    h2 {
+        font-size: 2.5rem;
+        margin-bottom: 3.5rem;
+    }
+    h3 {
+        font-size: 2rem;
+    }
+    h4 {
+        font-size: 1.5rem;
+    }
+    p,
+    span {
+        font-size: 1rem;
+    }
+    body {
+        font-size: 1.1rem;
+    }
+}
+
+.full-width {
+    width: 100vw;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.4;
+    font-weight: 400;
+    font-size: 1.4rem;
+    color: $secondary-color;
+    background-color: #f8f9fa;
+}
+
+.container {
+    margin: 0 auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.admin-layout {
+    width: 100%;
+}
+
+.admin-layout-menu {
+    width: 200px;
+}
+
+.admin-layout-content {
+    width: inherit;
+    background-color: rgba(255, 255, 255, 0.45);
+    display: flex;
+}
+
+.admin-layout-content__child {
+    width: inherit;
+    margin-top: 100px;
+}

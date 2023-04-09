@@ -1,0 +1,15 @@
+$primary-color: #f98125;
+$secondary-color: #193a6f;
+$light-color: #e0e9fb;
+$border-radius: 0.6rem;
+
+$success-color: #5cb85c;
+$danger-color: #FF0000;
+
+@mixin flexbox($align-items: flex-start, $justify-content: flex-start, $flex-wrap: nowrap, $flex-direction: row) {
+    display: flex;
+    align-items: $align-items;
+    justify-content: $justify-content;
+    flex-wrap: $flex-wrap;
+    flex-direction: $flex-direction;
+}
