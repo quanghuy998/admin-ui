@@ -1,17 +1,7 @@
-import { useEffect } from 'react';
-import { getUsersAsync } from '../../api/users/user.service';
-import axiosClient from '../../api/axiosClient';
+import { useUsers } from '../../state/users';
 
 const Home = () => {
-    useEffect(() => {
-        const fetchData = async () => {
-            const data = await getUsersAsync();
-            console.log(data);
-        };
-
-        fetchData();
-    }, []);
-
+    const { users, isFetching } = useUsers();
     return (
         <div>
             <div className="container">
