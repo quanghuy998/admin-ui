@@ -22,8 +22,8 @@ const Login = () => {
     const handleSubmit = async () => {
         var result = await loginAsync(userName, password);
         if (!result.error) {
-            setCookie('access_token', result.data.accessToken, { path: '/' });
-            setCookie('refresh_token', result.data.refreshToken, { path: '/' });
+            // setCookie('access_token', result.data.accessToken, { path: '/' });
+            // setCookie('refresh_token', result.data.refreshToken, { path: '/' });
             setIsLoggin(true);
         }
     };

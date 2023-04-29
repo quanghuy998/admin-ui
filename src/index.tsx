@@ -1,19 +1,14 @@
-import { ThemeProvider, createTheme } from '@mui/material';
+import { ThemeProvider } from '@mui/material';
 import { Provider } from 'react-redux';
 import reportWebVitals from './reportWebVitals';
 import ReactDOM from 'react-dom/client';
 
+import theme from './theme/mui-theme';
 import store from './state/store';
 import App from './App';
 import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
-
-const theme = createTheme({
-    typography: {
-        fontSize: 16,
-    },
-});
 
 root.render(
     <Provider store={store}>

@@ -11,11 +11,10 @@ interface IRoute {
     layout: any;
 }
 
-export const publicRoutes: IRoute[] = [
+export const publicRoutes: IRoute[] = [{ path: '/login', component: Login, layout: EmptyLayout }];
+
+export const privateRoutes: IRoute[] = [
     { path: '/', component: Home, layout: AdminLayout },
     { path: '/users', component: Users, layout: AdminLayout },
     { path: '/roles', component: ManageRoles, layout: AdminLayout },
-    { path: '/login', component: Login, layout: EmptyLayout },
 ];
-
-export const privateRoutes: IRoute[] = [];

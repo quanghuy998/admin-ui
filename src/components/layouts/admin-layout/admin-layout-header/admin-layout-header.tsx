@@ -64,7 +64,7 @@ const AdminLayoutHeader = () => {
                     <div className="admin-layout-header-section admin-layout-header-user-information border-right">
                         <Avatar className="admin-layout-header-user-information__avatar">N</Avatar>
                         <div>
-                            <div>Guillaume Musso</div>
+                            <div>Trần Thu Hiếu</div>
                             <span>Director</span>
                         </div>
                     </div>

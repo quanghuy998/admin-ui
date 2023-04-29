@@ -1,0 +1,8 @@
+.view-user-form-field {
+    display: flex;
+}
+
+.view-user-form-field > :first-child {
+    min-width: 100px;
+    font-weight: 600;
+}

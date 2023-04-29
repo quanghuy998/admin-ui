@@ -1,4 +1,14 @@
-import { GET_USERS, SET_USERS } from './constants';
+import { ICreateUserModal } from '../../api/users/user.service';
+import {
+    CREATE_USER_SAGA,
+    CREATE_USER,
+    GET_USERS,
+    SET_USERS,
+    UPDATE_USER_SAGA,
+    UPDATE_USER,
+    DELETE_USER_SAGA,
+    DELETE_USER,
+} from './constants';
 
 export interface IUser {
     id: number;
@@ -6,7 +16,7 @@ export interface IUser {
     lastName: string;
     email: string;
     address: string;
-    createTime: string;
+    createdTime: string;
     modifiedTime: string;
 }
 
@@ -21,7 +31,45 @@ export interface IGetUsersAction {
 
 export interface ISetUserAction {
     type: typeof SET_USERS;
-    users: IUser[];
+    payload: IUser[];
 }
 
-export type IUserActionTypes = IGetUsersAction | ISetUserAction;
+export interface ICreateUserAction {
+    type: typeof CREATE_USER;
+    payload: IUser;
+}
+
+export interface IUpdateUserAction {
+    type: typeof UPDATE_USER;
+    payload: IUser;
+}
+
+export interface IDeleteUserAction {
+    type: typeof DELETE_USER;
+    payload: number;
+}
+
+export interface ICreateUserSagaAction {
+    type: typeof CREATE_USER_SAGA;
+    payload: ICreateUserModal;
+}
+
+export interface IUpdateUserSagaAction {
+    type: typeof UPDATE_USER_SAGA;
+    payload: IUser;
+}
+
+export interface IDeleteUserSagaAction {
+    type: typeof DELETE_USER_SAGA;
+    payload: number;
+}
+
+export type IUserActionTypes =
+    | IGetUsersAction
+    | ISetUserAction
+    | IUpdateUserAction
+    | ICreateUserAction
+    | IDeleteUserAction
+    | IUpdateUserSagaAction
+    | ICreateUserSagaAction
+    | IDeleteUserSagaAction;

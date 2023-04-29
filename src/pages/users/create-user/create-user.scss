@@ -1,0 +1,21 @@
+.create-user-form > div {
+    margin: 10px;
+}
+
+.create-user-form-field {
+    display: flex;
+    align-items: center;
+}
+
+.create-user-form-field p {
+    width: 100px;
+}
+
+.create-user-form-button {
+    display: flex;
+    justify-content: center;
+}
+
+.create-user-form-button > button {
+    margin: 10px;
+}

@@ -1,63 +1,62 @@
-import { IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
-import users from '../../asserts/fake-datas/users';
-import Button from '../../components/button/button';
-import './user.scss';
-import { Delete, Edit, RemoveRedEye, Save } from '@mui/icons-material';
+import React from 'react';
 
-const Users = () => {
-    let createTime = new Date(1546108200 * 1000);
+import { deleteUserSagaAction, useUsers } from '../../state/users';
+import UserDetails from './user-details/user-details';
+import EditUser from './edit-user/edit-user';
+import CreateUser from './create-user/create-user';
+import ViewUser from './view-user/view-user';
+import { Alert, CircularProgress } from '@mui/material';
+import ModalConfirm from '../../components/modal-confirm/modal-confirm';
+import { useDispatch } from 'react-redux';
+
+export enum ICRUDFeature {
+    None,
+    View,
+    Create,
+    Update,
+    Delete,
+}
+
+const Users: React.FC = () => {
+    const [feature, setFeature] = React.useState({ feature: ICRUDFeature.None, userId: 0 });
+    const { users, isFetching } = useUsers();
+
+    const dispatch = useDispatch();
+    var user = users.find((_) => _.id === feature.userId);
+
+    const handleSelectUser = (userId: number, feature: ICRUDFeature) => {
+        setFeature({ feature, userId });
+    };
+
+    const handleCloseModal = () => {
+        setFeature({ feature: ICRUDFeature.None, userId: 0 });
+    };
+
+    const handleDeleteUser = () => {
+        dispatch(deleteUserSagaAction(feature.userId));
+    };
 
     return (
         <div className="user">
-            <div className="container">
-                <h3>Manage Users</h3>
-                <TableContainer>
-                    <Table aria-label="simple table">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>ID</TableCell>
-                                <TableCell align="left">First Name</TableCell>
-                                <TableCell align="left">Last Name</TableCell>
-                                <TableCell align="left">Created time</TableCell>
-                                <TableCell align="left">Modified time</TableCell>
-                                <TableCell align="left"></TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {users.map((user) => (
-                                <TableRow key={user.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                    <TableCell component="th" scope="row">
-                                        {user.id}
-                                    </TableCell>
-                                    <TableCell component="th" scope="row">
-                                        {user.firstName}
-                                    </TableCell>
-                                    <TableCell component="th" scope="row">
-                                        {user.lastName}
-                                    </TableCell>
-                                    <TableCell component="th" scope="row">
-                                        {new Date(user.createdTime * 1000).toUTCString()}
-                                    </TableCell>
-                                    <TableCell component="th" scope="row">
-                                        {new Date(user.modifiedTime * 1000).toUTCString()}
-                                    </TableCell>
-                                    <TableCell align="right">
-                                        <IconButton aria-label="delete" color="secondary">
-                                            <RemoveRedEye />
-                                        </IconButton>
-                                        <IconButton aria-label="delete" color="primary">
-                                            <Edit />
-                                        </IconButton>
-                                        <IconButton aria-label="delete" color="error">
-                                            <Delete />
-                                        </IconButton>
-                                    </TableCell>
-                                </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-            </div>
+            <h3>Manage Users</h3>
+            {isFetching && <CircularProgress />}
+            <UserDetails users={users} onSelected={handleSelectUser} />
+            {user && (
+                <ViewUser user={user} isOpen={feature.feature === ICRUDFeature.View} handleClose={handleCloseModal} />
+            )}
+            {user && (
+                <EditUser user={user} isOpen={feature.feature === ICRUDFeature.Update} handleClose={handleCloseModal} />
+            )}
+            <CreateUser isOpen={feature.feature === ICRUDFeature.Create} handleClose={handleCloseModal} />
+            {user && (
+                <ModalConfirm
+                    open={feature.feature === ICRUDFeature.Delete}
+                    onClose={handleCloseModal}
+                    onConfirm={handleDeleteUser}
+                    message="Do you want to delete?"
+                    header="Confirm"
+                />
+            )}
         </div>
     );
 };

@@ -38,6 +38,14 @@ export const putAsync = async (link: string, data: any, headers?: any, retry: bo
     }
 };
 
+export const deleteAsync = async (link: string, headers?: any, retry: boolean = true) => {
+    try {
+        return parseResponse(await axios.delete(link, buildRequestConfig(headers, retry)));
+    } catch (error) {
+        return await handleErrorResponse(error as IAxiosError);
+    }
+};
+
 const parseResponse = (response: AxiosRequestConfig): IHttpResponse => ({
     error: false,
     data: response.data,
