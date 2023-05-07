@@ -1,7 +1,6 @@
-import { deleteAsync, getAsync, postAsync, putAsync } from '../common/api-service';
 import config from '../../config/config';
-import { Cookies } from 'react-cookie';
 import { IUser } from '../../state/users/types';
+import { deleteAsync, getAsync, postAsync, putAsync } from '../common/api-service';
 
 export interface ICreateUserModal {
     email: string;

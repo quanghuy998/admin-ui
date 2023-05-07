@@ -1,20 +1,20 @@
-import { ContentCut } from '@mui/icons-material';
-import './admin-layout-menu.scss';
 import { Divider, MenuItem, MenuList, ListItemIcon, Link } from '@mui/material';
 import ListItemText from '@mui/material/ListItemText/ListItemText';
+import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';
 import BusinessIcon from '@mui/icons-material/Business';
-import RttIcon from '@mui/icons-material/Rtt';
-import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import AppsIcon from '@mui/icons-material/Apps';
 import HomeIcon from '@mui/icons-material/Home';
+import RttIcon from '@mui/icons-material/Rtt';
+
+import './admin-layout-menu.scss';
 
 const AdminLayoutMenu = () => {
     return (
         <div className="admin-layout-menu">
             <div className="admin-layout-menu-container">
                 <MenuList>
-                    <Link href="/">
+                    <Link href="/dashboard">
                         <MenuItem>
                             <ListItemIcon>
                                 <HomeIcon />

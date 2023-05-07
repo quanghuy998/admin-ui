@@ -1,8 +1,8 @@
-import React from 'react';
-import { IUser } from '../../../state/users/types';
-
-import './view-user.scss';
 import { Box, Modal } from '@mui/material';
+import React from 'react';
+
+import { IUser } from '../../../state/users/types';
+import './view-user.scss';
 
 interface IProps {
     user: IUser;

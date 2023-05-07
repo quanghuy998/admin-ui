@@ -1,8 +1,4 @@
-import { useRoles } from '../../state/roles';
-
 const ManageRoles = () => {
-    const { roles, isFetching } = useRoles();
-
     return (
         <div>
             <div className="container">

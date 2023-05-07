@@ -1,13 +1,13 @@
+import { CircularProgress } from '@mui/material';
+import { useDispatch } from 'react-redux';
 import React from 'react';
 
+import ModalConfirm from '../../components/modal-confirm/modal-confirm';
 import { deleteUserSagaAction, useUsers } from '../../state/users';
 import UserDetails from './user-details/user-details';
-import EditUser from './edit-user/edit-user';
 import CreateUser from './create-user/create-user';
+import EditUser from './edit-user/edit-user';
 import ViewUser from './view-user/view-user';
-import { Alert, CircularProgress } from '@mui/material';
-import ModalConfirm from '../../components/modal-confirm/modal-confirm';
-import { useDispatch } from 'react-redux';
 
 export enum ICRUDFeature {
     None,

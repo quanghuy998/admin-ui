@@ -1,7 +1,8 @@
-import { ThemeProvider } from '@mui/material';
-import { Provider } from 'react-redux';
 import reportWebVitals from './reportWebVitals';
+import { CookiesProvider } from 'react-cookie';
+import { ThemeProvider } from '@mui/material';
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
 
 import theme from './theme/mui-theme';
 import store from './state/store';
@@ -13,9 +14,9 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
     <Provider store={store}>
         <ThemeProvider theme={theme}>
-            {/* <React.StrictMode> */}
-            <App />
-            {/* </React.StrictMode> */}
+            <CookiesProvider>
+                <App />
+            </CookiesProvider>
         </ThemeProvider>
     </Provider>,
 );

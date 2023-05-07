@@ -1,10 +1,11 @@
 import { Button, IconButton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import { Delete, Edit, RemoveRedEye } from '@mui/icons-material';
-import { IUser } from '../../../state/users/types';
-import React, { useState } from 'react';
-import { ICRUDFeature } from '../users';
-import { deleteUserSagaAction } from '../../../state/users';
 import { useDispatch } from 'react-redux';
+import React from 'react';
+
+import { deleteUserSagaAction } from '../../../state/users';
+import { IUser } from '../../../state/users/types';
+import { ICRUDFeature } from '../users';
 
 interface IProps {
     users: IUser[];

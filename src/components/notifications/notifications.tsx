@@ -1,9 +1,9 @@
+import { useDispatch } from 'react-redux';
 import { Alert } from '@mui/material';
 import React from 'react';
 
-import './notifications.scss';
-import { useDispatch } from 'react-redux';
 import { deleteNotificationAction } from '../../state/notifications';
+import './notifications.scss';
 
 interface IProps {
     type: 'error' | 'warning' | 'info' | 'success';

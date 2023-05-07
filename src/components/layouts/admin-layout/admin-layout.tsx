@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { deleteNotificationAction, useNotifications } from '../../../state/notifications';
 import AdminLayoutHeader from './admin-layout-header/admin-layout-header';
 import AdminLayoutMenu from './admin-layout-menu/admin-layout-menu';
-
-import './admin-layout.scss';
 import Notifications from '../../notifications/notifications';
-import { deleteNotificationAction, useNotifications } from '../../../state/notifications';
-import { useDispatch } from 'react-redux';
+import './admin-layout.scss';
 
 interface Props {
     children: any;
@@ -14,7 +14,6 @@ interface Props {
 const AdminLayout: React.FC<Props> = (props) => {
     const notifications = useNotifications();
     const dispatch = useDispatch();
-    console.log(notifications);
 
     useEffect(() => {
         const timer = setTimeout(() => {

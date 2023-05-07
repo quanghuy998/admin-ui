@@ -1,13 +1,8 @@
 import { useSelector } from 'react-redux';
+
+import { ICreateNotificationModal, INotification, INotificationActionTypes, INotificationState } from './types';
+import { CREATE_NOTIFICATION, DELETE_NOTIFICATION } from './constants';
 import IState, { getDefaultState } from '../state';
-import { CREATE_NOTIFICATION, DELETE_NOTIFICATION, DELETE_NOTIFICATION_SAGA } from './constants';
-import {
-    ICreateNotificationModal,
-    IDeleteNotificationSagaAction,
-    INotification,
-    INotificationActionTypes,
-    INotificationState,
-} from './types';
 
 export const createNotificationAction = (notification: ICreateNotificationModal): INotificationActionTypes => ({
     type: CREATE_NOTIFICATION,

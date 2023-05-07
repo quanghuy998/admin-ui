@@ -1,28 +1,24 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { createNotificationAction, useNotifications } from '../../state/notifications';
-import { INotification } from '../../state/notifications/types';
+import { Button, Card, CardActions, CardContent } from '@mui/material';
+
+import './home.scss';
 
 const Home: React.FC = () => {
-    const dispatch = useDispatch();
-    const notifications = useNotifications();
-
-    React.useEffect(() => {
-        const notification: INotification = {
-            id: 0,
-            type: 'info',
-            message: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit',
-        };
-        dispatch(createNotificationAction(notification));
-    }, []);
-
     return (
-        <div>
-            <div className="container">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet, id maxime aspernatur at architecto
-                quidem perferendis perspiciatis nobis, minima est quaerat eius provident fuga veritatis sequi, delectus
-                repellat vel dolorum?
-            </div>
+        <div className="home-welcome-container">
+            <Card sx={{ minWidth: 400, maxWidth: 800 }} className="home-welcome">
+                <CardContent>
+                    <div className="logo">Orange</div>
+                    <p>Welcome!</p>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat magnam at doloribus quisquam,
+                        vitae facilis impedit distinctio vero, ipsa assumenda atque repellat totam cupiditate quod quia
+                        libero quidem. Ab, repellat?
+                    </p>
+                </CardContent>
+                <CardActions>
+                    <Button size="small">Learn More</Button>
+                </CardActions>
+            </Card>
         </div>
     );
 };

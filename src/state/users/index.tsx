@@ -2,17 +2,18 @@ import { call, put, takeLatest, takeLeading } from 'redux-saga/effects';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
+import { ICreateUserModal, createUserAsync, deleteUserAsync, getUsersAsync } from '../../api/users/user.service';
+import { createNotificationAction } from '../notifications';
+import { updateUserAsync } from '../../api/users/user.service';
+import IState, { getDefaultState } from '../state';
 import {
-    ICreateUserAction,
     ICreateUserSagaAction,
     IDeleteUserSagaAction,
-    IUpdateUserAction,
     IUpdateUserSagaAction,
     IUser,
     IUserActionTypes,
     IUserState,
 } from './types';
-import { ICreateUserModal, createUserAsync, deleteUserAsync, getUsersAsync } from '../../api/users/user.service';
 import {
     CREATE_USER_SAGA,
     CREATE_USER,
@@ -23,9 +24,6 @@ import {
     DELETE_USER,
     DELETE_USER_SAGA,
 } from './constants';
-import IState, { getDefaultState } from '../state';
-import { updateUserAsync } from '../../api/users/user.service';
-import { createNotificationAction } from '../notifications';
 
 /*----------------- Start reducer -------------------------------*/
 

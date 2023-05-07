@@ -1,57 +1,34 @@
-import { Button, TextField } from '@mui/material';
-import './login.scss';
-import { useEffect, useState } from 'react';
-import { loginAsync, validateUserToken } from '../../api/users/user.service';
-import useCookies from 'react-cookie/cjs/useCookies';
+import { useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import queryString from 'query-string';
 
-const Login = () => {
-    const [isLoggin, setIsLoggin] = useState(false);
-    const [userName, setUserName] = useState('');
-    const [password, setPassword] = useState('');
-    const [cookies, setCookie] = useCookies(['access_token', 'refresh_token']);
+import { getTokenAsync } from '../../api/identity/identity.service';
+import config from '../../config/config';
+import IState from '../../state/state';
+
+const Login: React.FC = () => {
+    const location = useLocation();
+    const params = queryString.parse(location.search);
+    const isLogin = useSelector((state: IState) => state.authentication.isLoggedIn);
 
     useEffect(() => {
-        (async function isUserLoggedIn() {
-            var result = await validateUserToken(cookies['access_token']);
-            if (!result.error) setIsLoggin(true);
-            else setIsLoggin(false);
-        })();
-        if (isLoggin) window.location.replace('/');
-    }, [isLoggin]);
-
-    const handleSubmit = async () => {
-        var result = await loginAsync(userName, password);
-        if (!result.error) {
-            // setCookie('access_token', result.data.accessToken, { path: '/' });
-            // setCookie('refresh_token', result.data.refreshToken, { path: '/' });
-            setIsLoggin(true);
+        var authCode = params.code;
+        var redirectUri = config.adminBaseUrl + 'login';
+        if (authCode === null || authCode === undefined) {
+            var path = `${config.fusionAuthBaseUrl}oauth2/authorize?client_id=${config.adminApplicationId}&response_type=code&redirect_uri=${config.adminBaseUrl}login`;
+            window.location.replace(path);
         }
-    };
 
-    return (
-        <div className="login">
-            <div className="login-content-form">
-                <h2>Login</h2>
-                <TextField
-                    label="User name"
-                    variant="standard"
-                    className="login-content-form-text"
-                    onChange={(e) => setUserName(e.target.value)}
-                />
-                <TextField
-                    label="Password"
-                    variant="standard"
-                    className="login-content-form-text"
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                <div className="row">
-                    <input type="checkbox" /> Remember me?
-                </div>
-                <Button variant="contained" onClick={() => handleSubmit()}>
-                    Login
-                </Button>
-            </div>
-        </div>
-    );
+        if (isLogin === false) {
+            getTokenAsync(authCode!.toString(), redirectUri).then(function () {
+                window.location.replace(config.adminBaseUrl + 'dashboard');
+                return;
+            });
+        }
+    }, []);
+
+    return <div>Redirecting to login...</div>;
 };
+
 export default Login;

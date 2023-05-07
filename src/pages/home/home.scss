@@ -1,0 +1,15 @@
+@import '../../commons/styles.scss';
+
+.home-welcome-container {
+    background-color: gainsboro;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    p {
+        margin: 10px 0;
+        font-size: 14px;
+        color: $secondary-color;
+    }
+}

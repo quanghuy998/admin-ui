@@ -1,10 +1,10 @@
 import { Box, Button, Input, Modal, TextField, Typography } from '@mui/material';
-import React, { useEffect } from 'react';
-import { IUser } from '../../../state/users/types';
-
-import './edit-user.scss';
 import { useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
+
 import { updateUserSagaAction } from '../../../state/users';
+import { IUser } from '../../../state/users/types';
+import './edit-user.scss';
 
 interface Props {
     user: IUser;

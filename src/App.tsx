@@ -1,23 +1,33 @@
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import { Routes } from 'react-router';
-import Home from './pages/home/home';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { privateRoutes, publicRoutes } from './routes';
-import AdminLayout from './components/layouts/admin-layout/admin-layout';
-import { Fragment } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useCookies } from 'react-cookie';
+import { Routes } from 'react-router';
+import { useEffect } from 'react';
+
+import { checkIsLoggedInSagaAction, isCheckedLoggedInSelector, isLoggedInSelector } from './state/authentication';
+import WaitingForAuthentication from './components/waiting-for-authentication/waiting-for-authentication';
 import EmptyLayout from './components/layouts/empty-layout/empty-layout';
-import PrivateRoute from './components/private-route/private-route';
+import NotLoggedIn from './pages/not-logged-in/not-logged-in';
 
 function App() {
+    const dispatch = useDispatch();
+    const [cookies, setCookies] = useCookies();
+
+    const isLoggedIn = useSelector(isLoggedInSelector);
+    const isCheckedLoggedIn = useSelector(isCheckedLoggedInSelector);
+
+    useEffect(() => {
+        dispatch(checkIsLoggedInSagaAction(cookies));
+    }, [dispatch]);
+
     return (
         <Router>
             <div className="App">
                 <Routes>
                     {publicRoutes.map((route, index) => {
                         const Page = route.component;
-                        let Layout = EmptyLayout;
-                        if (route.layout) {
-                            Layout = route.layout;
-                        }
+                        const Layout = route.layout ? route.layout : EmptyLayout;
 
                         return (
                             <Route
@@ -32,12 +42,15 @@ function App() {
                         );
                     })}
                     {privateRoutes.map((route, index) => {
-                        const Page = route.component;
-                        let Layout = EmptyLayout;
-                        if (route.layout) {
-                            Layout = route.layout;
-                        }
-                        console.log(document.cookie);
+                        let Layout = route.layout ? route.layout : EmptyLayout;
+                        const Page = isCheckedLoggedIn
+                            ? WaitingForAuthentication
+                            : isLoggedIn
+                            ? route.component
+                            : NotLoggedIn;
+
+                        if (Page === WaitingForAuthentication) Layout = EmptyLayout;
+
                         return (
                             <Route
                                 key={index}

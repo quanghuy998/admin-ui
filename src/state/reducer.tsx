@@ -1,12 +1,15 @@
+import { combineReducers } from '@reduxjs/toolkit';
+
+import authentication from './authentication';
+import notifications from './notifications';
 import users from './users';
 import roles from './roles';
-import notifications from './notifications';
-import { combineReducers } from '@reduxjs/toolkit';
 
 const rootReducer = combineReducers({
     users,
     roles,
     notifications,
+    authentication,
 });
 
 export default rootReducer;

@@ -1,12 +1,9 @@
 import { Box, Button, Modal, TextField, Typography } from '@mui/material';
+import { useDispatch } from 'react-redux';
 import React from 'react';
 
-import './create-user.scss';
-import { useDispatch } from 'react-redux';
 import { createUserSagaAction } from '../../../state/users';
-import { ICreateUserModal } from '../../../api/users/user.service';
-import { createNotificationAction } from '../../../state/notifications';
-import { ICreateNotificationModal } from '../../../state/notifications/types';
+import './create-user.scss';
 
 interface IProps {
     isOpen: boolean;

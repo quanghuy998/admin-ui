@@ -1,11 +1,12 @@
 import { call, put, takeLeading } from 'redux-saga/effects';
-import IState, { getDefaultState } from '../state';
-import { GET_ROLES, SET_ROLES } from './constants';
-import { IRolesActionTypes } from './types';
-import { IGetRolesAction, IRole, IRoleState, ISetRolesAction } from './types';
-import { getRolesAsync } from '../../api/roles/role.service';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+
+import { IGetRolesAction, IRole, IRoleState, ISetRolesAction } from './types';
+import { getRolesAsync } from '../../api/roles/role.service';
+import { GET_ROLES, SET_ROLES } from './constants';
+import IState, { getDefaultState } from '../state';
+import { IRolesActionTypes } from './types';
 
 export const getRoleAction = (): IGetRolesAction => ({
     type: GET_ROLES,
